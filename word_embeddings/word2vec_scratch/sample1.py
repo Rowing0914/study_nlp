@@ -3,7 +3,7 @@ import numpy as np
 from collections import defaultdict
 
 
-class word2vec():
+class word2vec(object):
     def __init__(self):
         self.n = settings['n']
         self.eta = settings['learning_rate']
@@ -41,7 +41,7 @@ class word2vec():
                 # CYCLE THROUGH CONTEXT WINDOW
                 w_context = []
                 for j in range(i - self.window, i + self.window + 1):
-                    if j != i and j <= sent_len - 1 and j >= 0:
+                    if j != i and sent_len - 1 >= j >= 0:
                         w_context.append(self.word2onehot(sentence[j]))
                 training_data.append([w_target, w_context])
         return np.array(training_data)
